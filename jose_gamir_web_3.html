@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>José Gámir — Industrial Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0F;
+  --bg2: #111827;
+  --bg3: #1F2937;
+  --bg4: #263040;
+  --blue: #3B82F6;
+  --blue-dim: #1D4ED8;
+  --blue-glow: rgba(59,130,246,0.15);
+  --text: #E2E8F0;
+  --text-dim: #94A3B8;
+  --text-faint: #475569;
+  --green: #10B981;
+  --amber: #F59E0B;
+  --border: #1E293B;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  height: 60px;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--blue);
+  letter-spacing: 0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg3);
+  border-radius: 6px;
+  padding: 3px;
+  margin-left: 16px;
+}
+
+.lang-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'Space Grotesk', sans-serif;
+  transition: all 0.2s;
+  letter-spacing: 0.06em;
+}
+
+.lang-btn.active {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 5vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.hero-photo-col {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-photo-frame {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  overflow: hidden;
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.hero-photo-frame:hover { border-color: rgba(255,255,255,0.5); }
+
+.hero-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.hero-photo-placeholder {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,15,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.hero-photo-frame:hover .hero-photo-overlay { opacity: 1; }
+
+.hero-photo-hint {
+  font-size: 11px;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
+  .hero-photo-col { align-items: flex-start; }
+  .hero-photo-frame { width: 100px; height: 100px; }
+  .hero-photo-placeholder { font-size: 32px; }
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.hero-glow {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+}
+
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--blue);
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(42px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.hero h1 span { color: var(--blue); }
+
+.hero-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+
+.hero-tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.hero-tag:hover { border-color: var(--blue); color: var(--blue); }
+
+.hero-tag.available {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 28px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: var(--blue-dim); transform: translateY(-1px); }
+
+.btn-secondary {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.15s;
+  display: inline-block;
+}
+
+.btn-secondary:hover { border-color: var(--blue); transform: translateY(-1px); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 5vw;
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--text-faint), transparent);
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: 96px 5vw;
+  border-top: 1px solid var(--border);
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+  line-height: 1.15;
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.about-text {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+.about-text p { margin-bottom: 16px; }
+.about-text strong { color: var(--text); font-weight: 600; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.2s;
+}
+
+.stat-card:hover { border-color: var(--blue); }
+
+.stat-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+/* ── TIMELINE ── */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--blue), transparent);
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tl-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tl-dot {
+  position: absolute;
+  left: -37px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px var(--blue-glow);
+}
+
+.tl-date {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.tl-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.tl-org {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-org .sep { color: var(--text-faint); }
+
+.tl-body {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+.tl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.tl-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg3);
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+/* ── SKILLS ── */
+.skills-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.skills-group {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.skills-group-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-row {
+  margin-bottom: 16px;
+}
+
+.skill-row:last-child { margin-bottom: 0; }
+
+.skill-row-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.skill-row-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.skill-row-level {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.skill-bar {
+  height: 3px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 3px;
+  width: 0;
+  transition: width 1s ease;
+}
+
+/* LANG SECTION */
+.lang-grid-main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.lang-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.lang-card:hover { border-color: var(--blue); }
+
+.lang-card-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.lang-card-level {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue);
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 4px;
+}
+
+.lang-card-desc {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ── PROJECTS ── */
+.projects-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+
+.proj-tab {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+}
+
+.proj-tab.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+.proj-panel { display: none; }
+.proj-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+
+.proj-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.proj-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-3px);
+}
+
+.proj-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.proj-status .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.status-done { color: var(--green); }
+.status-done .dot { background: var(--green); }
+.status-progress { color: var(--blue); }
+.status-progress .dot { background: var(--blue); animation: pulse2 2s infinite; }
+.status-planned { color: var(--amber); }
+.status-planned .dot { background: var(--amber); }
+
+@keyframes pulse2 {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.proj-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.proj-body {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.proj-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg3);
+  color: var(--text-dim);
+}
+
+/* ── CONTACT ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.contact-label { font-size: 11px; color: var(--text-faint); margin-bottom: 2px; }
+.contact-value { color: var(--text); font-weight: 500; }
+
+.availability-box {
+  background: var(--bg2);
+  border: 1px solid var(--green);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.availability-box h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avail-dot {
+  width: 9px;
+  height: 9px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse2 2s infinite;
+}
+
+.availability-box p {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* ── FADE IN ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .skills-cols { grid-template-columns: 1fr; }
+  .lang-grid-main { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .lang-grid-main { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">JG</div>
+  <div class="nav-links">
+    <a href="#sobre-mi" data-es="Sobre mí" data-en="About"></a>
+    <a href="#trayectoria" data-es="Trayectoria" data-en="Experience"></a>
+    <a href="#habilidades" data-es="Habilidades" data-en="Skills"></a>
+    <a href="#proyectos" data-es="Proyectos" data-en="Projects"></a>
+    <a href="#contacto" data-es="Contacto" data-en="Contact"></a>
+  </div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow" data-es="Ingeniería · Diseño · Industria" data-en="Engineering · Design · Industry">Ingeniería · Diseño · Industria</div>
+      <h1>José<br><span>Gámir</span><br>García</h1>
+      <p class="hero-sub" data-es="Estudiante de Ingeniería en Tecnologías Industriales en la UPC–ESEIAAT. Perfil técnico con experiencia real en entornos exigentes. En construcción constante." data-en="Industrial Engineering student at UPC–ESEIAAT. Technical profile with real experience in demanding environments. Constantly under construction.">
+        Estudiante de Ingeniería en Tecnologías Industriales en la UPC–ESEIAAT. Perfil técnico con experiencia real en entornos exigentes. En construcción constante.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag available" data-es="● Disponible Jul–Ago 2026" data-en="● Available Jul–Aug 2026">● Disponible Jul–Ago 2026</span>
+        <span class="hero-tag">CATIA · SolidWorks</span>
+        <span class="hero-tag">C1 English · EOI Rubí</span>
+        <span class="hero-tag" data-es="Terrassa, Barcelona" data-en="Terrassa, Barcelona">Terrassa, Barcelona</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#trayectoria" class="btn-primary" data-es="Ver trayectoria" data-en="View experience">Ver trayectoria</a>
+        <a href="#contacto" class="btn-secondary" data-es="Contactar" data-en="Get in touch">Contactar</a>
+      </div>
+    </div>
+    <div class="hero-photo-col">
+      <div class="hero-photo-frame" onclick="document.getElementById('photo-input').click()">
+        <div class="hero-photo-placeholder" id="photo-placeholder">JG</div>
+        <img id="photo-preview" style="display:none;" alt="José Gámir">
+        <div class="hero-photo-overlay" id="photo-overlay" data-es="Cambiar foto" data-en="Change photo">Cambiar foto</div>
+      </div>
+      <div class="hero-photo-hint" id="photo-hint" data-es="Haz clic para añadir foto" data-en="Click to add photo">Haz clic para añadir foto</div>
+      <input type="file" id="photo-input" accept="image/*" style="display:none">
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="section-eyebrow fade-in" data-es="Perfil" data-en="Profile">Perfil</div>
+  <div class="section-title fade-in" data-es="Quién soy" data-en="Who I am">Quién soy</div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p data-es="Estudiante de <strong>Ingeniería en Tecnologías Industriales</strong> en la ESEIAAT (UPC, Terrassa), con formación en mecánica, automatización, electricidad, resistencia de materiales y diseño CAD. Mi perfil combina base técnica sólida con experiencia laboral real en entornos de alta exigencia." data-en="Industrial Engineering student at ESEIAAT (UPC, Terrassa), with training in mechanics, automation, electricity, materials resistance and CAD design. My profile combines a solid technical base with real work experience in high-demand environments.">
+        Estudiante de <strong>Ingeniería en Tecnologías Industriales</strong> en la ESEIAAT (UPC, Terrassa), con formación en mecánica, automatización, electricidad, resistencia de materiales y diseño CAD. Mi perfil combina base técnica sólida con experiencia laboral real en entornos de alta exigencia.
+      </p>
+      <p data-es="Galardonado con el <strong>Premi Extraordinari de Batxillerat de Catalunya</strong> (curs 2022–2023), distinción concedida a 46 alumnos de toda Cataluña. Certificado en inglés <strong>C1 Advanced</strong> (EOI Rubí, 2024)." data-en="Awarded the <strong>Premi Extraordinari de Batxillerat de Catalunya</strong> (2022–2023), a distinction granted to 46 students across Catalonia. Certified in <strong>C1 Advanced English</strong> (EOI Rubí, 2024).">
+        Galardonado con el <strong>Premi Extraordinari de Batxillerat de Catalunya</strong> (curs 2022–2023), distinción concedida a 46 alumnos de toda Cataluña. Certificado en inglés <strong>C1 Advanced</strong> (EOI Rubí, 2024).
+      </p>
+      <p data-es="Mi objetivo a corto plazo: completar los créditos necesarios para retomar las prácticas en Applus+ y construir un portfolio técnico en CAD, análisis de datos industriales y mejora continua." data-en="Short-term goal: complete the credits needed to resume my internship at Applus+ and build a technical portfolio in CAD, industrial data analysis and continuous improvement.">
+        Mi objetivo a corto plazo: completar los créditos necesarios para retomar las prácticas en Applus+ y construir un portfolio técnico en CAD, análisis de datos industriales y mejora continua.
+      </p>
+    </div>
+    <div class="stats-grid fade-in">
+      <div class="stat-card">
+        <div class="stat-number">102</div>
+        <div class="stat-label" data-es="Créditos superados (de 240)" data-en="Credits completed (of 240)">Créditos superados (de 240)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">C1</div>
+        <div class="stat-label" data-es="Inglés · EOI Rubí, 2024" data-en="English · EOI Rubí, 2024">Inglés · EOI Rubí, 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">80h</div>
+        <div class="stat-label" data-es="Curso CATIA (UPC)" data-en="CATIA Course (UPC)">Curso CATIA (UPC)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">46</div>
+        <div class="stat-label" data-es="Premiados en Cataluña (Premi Extraordinari)" data-en="Awarded in Catalonia (Premi Extraordinari)">Premiados en Cataluña (Premi Extraordinari)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAYECTORIA -->
+<section id="trayectoria">
+  <div class="section-eyebrow fade-in" data-es="Experiencia y formación" data-en="Experience & Education">Experiencia y formación</div>
+  <div class="section-title fade-in" data-es="Trayectoria" data-en="Timeline">Trayectoria</div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date" data-es="Mar 2026 – Jun 2026" data-en="Mar 2026 – Jun 2026">Mar 2026 – Jun 2026</div>
+      <div class="tl-title" data-es="Profesor particular de Matemáticas de Bachillerato" data-en="Private Maths Tutor (Baccalaureate)">Profesor particular de Matemáticas de Bachillerato</div>
+      <div class="tl-org"><span data-es="Por cuenta propia" data-en="Self-employed">Por cuenta propia</span><span class="sep">·</span><span>Terrassa</span></div>
+      <div class="tl-body" data-es="Clases orientadas a la Selectivitat/PAU. 4–10h semanales cubriendo probabilidad, geometría, sistemas de ecuaciones y vectores. Uno de mis alumnos, repetidor de curso, logró titularse de Bachillerato." data-en="PAU-focused tutoring sessions. 4–10 hours per week covering probability, 3D geometry, systems of equations and vectors. One of my students, a repeating-year student, successfully completed Baccalaureate.">
+        Clases orientadas a la Selectivitat/PAU. 4–10h semanales cubriendo probabilidad, geometría, sistemas de ecuaciones y vectores. Uno de mis alumnos, repetidor de curso, logró titularse de Bachillerato.
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag" data-es="Docencia" data-en="Teaching">Docencia</span>
+        <span class="tl-tag" data-es="Planificación" data-en="Planning">Planificación</span>
+        <span class="tl-tag">Selectivitat/PAU</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date" data-es="Feb 2025" data-en="Feb 2025">Feb 2025</div>
+      <div class="tl-title" data-es="Curso de Diseño CAD 3D con CATIA (80h)" data-en="3D CAD Design Course with CATIA (80h)">Curso de Diseño CAD 3D con CATIA (80h)</div>
+      <div class="tl-org"><span>ESEIAAT – UPC</span><span class="sep">·</span><span>Terrassa</span></div>
+      <div class="tl-body" data-es="Módulos 1–4: Part Design, Sketcher, ensamblajes, planos y acotación, operaciones avanzadas, superficies y Wireframe & Surface Design. Orientación al uso industrial real del software." data-en="Modules 1–4: Part Design, Sketcher, assemblies, drafting and dimensioning, advanced operations, surfaces and Wireframe & Surface Design. Focused on real industrial use of the software.">
+        Módulos 1–4: Part Design, Sketcher, ensamblajes, planos y acotación, operaciones avanzadas, superficies y Wireframe & Surface Design. Orientación al uso industrial real del software.
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag">CATIA V5</span>
+        <span class="tl-tag">Part Design</span>
+        <span class="tl-tag">Assembly</span>
+        <span class="tl-tag">Drafting</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date" data-es="Oct 2024 – Dic 2024" data-en="Oct 2024 – Dec 2024">Oct 2024 – Dic 2024</div>
+      <div class="tl-title" data-es="Ayudante de cocina y atención al público" data-en="Kitchen Assistant & Customer Service">Ayudante de cocina y atención al público</div>
+      <div class="tl-org"><span>Burger King Iberia</span><span class="sep">·</span><span>Sant Cugat del Vallès</span></div>
+      <div class="tl-body" data-es="Línea de producción de alta rotación. Caja/TPV, FIFO, reposición de cámara frigorífica, higiene y protocolos de cadena, coordinación en picos de demanda." data-en="High-turnover production line. Cash/POS, FIFO, cold room restocking, chain hygiene protocols, team coordination during peak demand.">
+        Línea de producción de alta rotación. Caja/TPV, FIFO, reposición de cámara frigorífica, higiene y protocolos de cadena, coordinación en picos de demanda.
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag">FIFO</span>
+        <span class="tl-tag">TPV</span>
+        <span class="tl-tag" data-es="Higiene alimentaria" data-en="Food safety">Higiene alimentaria</span>
+        <span class="tl-tag" data-es="Trabajo en equipo" data-en="Teamwork">Trabajo en equipo</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date" data-es="Jul 2024" data-en="Jul 2024">Jul 2024</div>
+      <div class="tl-title" data-es="Estancia de investigación — Quantum Optics Theory" data-en="Research Stay — Quantum Optics Theory">Estancia de investigación — Quantum Optics Theory</div>
+      <div class="tl-org"><span>ICFO – Institut de Ciències Fotòniques</span><span class="sep">·</span><span>Castelldefels</span></div>
+      <div class="tl-body" data-es="Programa ACER. Dos semanas bajo supervisión del Prof. Dr. Maciej Lewenstein. Mecánica cuántica, álgebra lineal, desigualdades de Bell, computación cuántica con IBM Quantum, ecuación de Schrödinger y condensados de Bose-Einstein." data-en="ACER programme. Two weeks under supervision of Prof. Dr. Maciej Lewenstein. Quantum mechanics, linear algebra, Bell inequalities, quantum computing with IBM Quantum, Schrödinger equation and Bose-Einstein condensates.">
+        Programa ACER. Dos semanas bajo supervisión del Prof. Dr. Maciej Lewenstein. Mecánica cuántica, álgebra lineal, desigualdades de Bell, computación cuántica con IBM Quantum, ecuación de Schrödinger y condensados de Bose-Einstein.
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag" data-es="Investigación" data-en="Research">Investigación</span>
+        <span class="tl-tag">IBM Quantum</span>
+        <span class="tl-tag">Programa ACER</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date" data-es="Jun 2024" data-en="Jun 2024">Jun 2024</div>
+      <div class="tl-title" data-es="Certificado de Inglés C1 Advanced" data-en="C1 Advanced English Certificate">Certificado de Inglés C1 Advanced</div>
+      <div class="tl-org"><span>Escola Oficial d'Idiomes de Rubí</span></div>
+      <div class="tl-body" data-es="Nivel C1 del Marco Común Europeo de Referencia (MCER). Certificado por la EOI Rubí (junio 2024)." data-en="C1 level of the Common European Framework of Reference (CEFR). Certified by EOI Rubí (June 2024).">Nivel C1 del Marco Común Europeo de Referencia (MCER). Certificado por la EOI Rubí (junio 2024).</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date" data-es="2023 – Actualidad" data-en="2023 – Present">2023 – Actualidad</div>
+      <div class="tl-title" data-es="Grado en Ingeniería en Tecnologías Industriales" data-en="BSc Industrial Engineering (in progress)">Grado en Ingeniería en Tecnologías Industriales</div>
+      <div class="tl-org"><span>UPC – ESEIAAT</span><span class="sep">·</span><span>Terrassa</span></div>
+      <div class="tl-body" data-es="102 créditos superados de 240. Formación en mecánica, automatización, electricidad, expresión gráfica, matemáticas aplicadas y resistencia de materiales." data-en="102 credits completed out of 240. Training in mechanics, automation, electricity, technical drawing, applied mathematics and materials resistance.">
+        102 créditos superados de 240. Formación en mecánica, automatización, electricidad, expresión gráfica, matemáticas aplicadas y resistencia de materiales.
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date" data-es="Sep 2021 – Dic 2021" data-en="Sep 2021 – Dec 2021">Sep 2021 – Dic 2021</div>
+      <div class="tl-title" data-es="Cajero y contable en tienda escolar" data-en="Store Cashier & Bookkeeper">Cajero y contable en tienda escolar</div>
+      <div class="tl-org"><span>Maristes Rubí</span><span class="sep">·</span><span>Rubí</span></div>
+      <div class="tl-body" data-es="Cajero y responsable de contabilidad en la tienda de ropa del centro escolar. Cobros en TPV y efectivo, registro contable en hoja de cálculo, control de inventario textil, apertura y cierre de tienda con custodia de llaves." data-en="Cashier and bookkeeper at the school clothing store. POS and cash payments, accounting records in spreadsheet, textile inventory control, store opening and closing with key custody.">
+        Cajero y responsable de contabilidad en la tienda de ropa del centro escolar. Cobros en TPV y efectivo, registro contable en hoja de cálculo, control de inventario textil, apertura y cierre de tienda con custodia de llaves.
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag">TPV</span>
+        <span class="tl-tag" data-es="Contabilidad básica" data-en="Basic accounting">Contabilidad básica</span>
+        <span class="tl-tag">Excel</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date" data-es="2021 – 2023" data-en="2021 – 2023">2021 – 2023</div>
+      <div class="tl-title" data-es="Bachillerato científico-tecnológico" data-en="Scientific-Technological Baccalaureate">Bachillerato científico-tecnológico</div>
+      <div class="tl-org"><span>Maristes Rubí</span><span class="sep">·</span><span>Rubí</span></div>
+      <div class="tl-body" data-es="Especialización en Física. Galardonado con el Premi Extraordinari de Batxillerat de Catalunya (curs 2022–2023), distinción concedida a 46 alumnos en toda Cataluña." data-en="Physics specialisation. Awarded the Premi Extraordinari de Batxillerat de Catalunya (2022–2023), granted to 46 students across Catalonia.">
+        Especialización en Física. Galardonado con el Premi Extraordinari de Batxillerat de Catalunya (curs 2022–2023), distinción concedida a 46 alumnos en toda Cataluña.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="section-eyebrow fade-in" data-es="Competencias" data-en="Competencies">Competencias</div>
+  <div class="section-title fade-in" data-es="Habilidades" data-en="Skills">Habilidades</div>
+  <div class="skills-cols fade-in">
+    <div class="skills-group">
+      <div class="skills-group-title" data-es="Técnicas" data-en="Technical">Técnicas</div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name">CATIA V5</span>
+          <span class="skill-row-level" data-es="Formación 80h" data-en="80h training">Formación 80h</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name">SolidWorks</span>
+          <span class="skill-row-level" data-es="Carrera + práctica" data-en="Degree + practice">Carrera + práctica</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name">Excel</span>
+          <span class="skill-row-level" data-es="Intermedio" data-en="Intermediate">Intermedio</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="50"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name">Google Suite</span>
+          <span class="skill-row-level" data-es="Uso regular" data-en="Regular use">Uso regular</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-title" data-es="Operativas" data-en="Operational">Operativas</div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name" data-es="Caja / TPV" data-en="Cash / POS">Caja / TPV</span>
+          <span class="skill-row-level" data-es="Exp. real" data-en="Real exp.">Exp. real</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name">FIFO / Stock</span>
+          <span class="skill-row-level" data-es="Exp. real" data-en="Real exp.">Exp. real</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name" data-es="Atención al cliente" data-en="Customer service">Atención al cliente</span>
+          <span class="skill-row-level" data-es="Exp. real" data-en="Real exp.">Exp. real</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name" data-es="Trabajo bajo presión" data-en="Under pressure">Trabajo bajo presión</span>
+          <span class="skill-row-level" data-es="Exp. real" data-en="Real exp.">Exp. real</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-title" data-es="Idiomas" data-en="Languages">Idiomas</div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name" data-es="Castellano" data-en="Spanish">Castellano</span>
+          <span class="skill-row-level">C2 · Nativo</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name" data-es="Catalán" data-en="Catalan">Catalán</span>
+          <span class="skill-row-level">C2 · Nativo</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-header">
+          <span class="skill-row-name" data-es="Inglés" data-en="English">Inglés</span>
+          <span class="skill-row-level" data-es="C1 · Certificado" data-en="C1 · Certified">C1 · Certificado</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="section-eyebrow fade-in" data-es="Lo que construyo" data-en="What I build">Lo que construyo</div>
+  <div class="section-title fade-in" data-es="Proyectos" data-en="Projects">Proyectos</div>
+  <div class="proj-panel active" id="panel-tecnico">
+    <div class="proj-card">
+      <div class="proj-status status-progress"><div class="dot"></div><span data-es="En curso" data-en="In progress">En curso</span></div>
+      <div class="proj-title" data-es="Portfolio CAD — Piezas y ensamblajes en CATIA y SolidWorks" data-en="CAD Portfolio — Parts & assemblies in CATIA and SolidWorks">Portfolio CAD — Piezas y ensamblajes en CATIA y SolidWorks</div>
+      <div class="proj-body" data-es="Construcción de un portfolio de modelos 3D que documente el dominio progresivo de ambas herramientas. Enfoque en producción y automoción." data-en="Building a 3D model portfolio documenting progressive mastery of both tools. Focus on manufacturing and automotive applications.">Construcción de un portfolio de modelos 3D que documente el dominio progresivo de ambas herramientas. Enfoque en producción y automoción.</div>
+      <div class="proj-tags"><span class="proj-tag">CATIA V5</span><span class="proj-tag">SolidWorks</span><span class="proj-tag" data-es="Automoción" data-en="Automotive">Automoción</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-status status-planned"><div class="dot"></div><span data-es="Planificado" data-en="Planned">Planificado</span></div>
+      <div class="proj-title" data-es="Dashboard industrial en Excel / Power BI" data-en="Industrial Dashboard in Excel / Power BI">Dashboard industrial en Excel / Power BI</div>
+      <div class="proj-body" data-es="Cuadro de mando para seguimiento de KPIs de producción: OEE, tiempos de ciclo y tasas de defecto. Orientado a práctica de análisis de datos industriales." data-en="Control dashboard for production KPI tracking: OEE, cycle times and defect rates. Aimed at practising industrial data analysis.">Cuadro de mando para seguimiento de KPIs de producción: OEE, tiempos de ciclo y tasas de defecto. Orientado a práctica de análisis de datos industriales.</div>
+      <div class="proj-tags"><span class="proj-tag">Excel</span><span class="proj-tag">Power BI</span><span class="proj-tag">KPIs</span><span class="proj-tag">OEE</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-status status-planned"><div class="dot"></div><span data-es="Planificado" data-en="Planned">Planificado</span></div>
+      <div class="proj-title" data-es="Prácticas en empresa técnica — Applus+" data-en="Technical internship — Applus+">Prácticas en empresa técnica — Applus+</div>
+      <div class="proj-body" data-es="Contacto activo con Applus+ para retomar las prácticas en cuanto se alcancen los 120 créditos requeridos (actualmente 102/240). Área de interés: inspección técnica, calidad e ingeniería de producción." data-en="Active contact with Applus+ to resume the internship once 120 required credits are reached (currently 102/240). Area of interest: technical inspection, quality and production engineering.">Contacto activo con Applus+ para retomar las prácticas en cuanto se alcancen los 120 créditos requeridos (actualmente 102/240). Área de interés: inspección técnica, calidad e ingeniería de producción.</div>
+      <div class="proj-tags"><span class="proj-tag">Applus+</span><span class="proj-tag" data-es="Prácticas" data-en="Internship">Prácticas</span><span class="proj-tag" data-es="Calidad" data-en="Quality">Calidad</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-eyebrow fade-in" data-es="Hablemos" data-en="Let's talk">Hablemos</div>
+  <div class="section-title fade-in" data-es="Contacto" data-en="Contact">Contacto</div>
+  <div class="contact-grid fade-in">
+    <div class="contact-info">
+      <div class="contact-row">
+        <div class="contact-icon">📞</div>
+        <div><div class="contact-label" data-es="Teléfono" data-en="Phone">Teléfono</div><div class="contact-value">658 42 13 94</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">✉️</div>
+        <div><div class="contact-label" data-es="Email principal" data-en="Main email">Email principal</div><div class="contact-value">iosifgamir@hotmail.com</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">💼</div>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-value">linkedin.com/in/josé-gámir</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">📍</div>
+        <div><div class="contact-label" data-es="Ubicación" data-en="Location">Ubicación</div><div class="contact-value" data-es="Les Fonts, Terrassa (08228)" data-en="Les Fonts, Terrassa (08228)">Les Fonts, Terrassa (08228)</div></div>
+      </div>
+    </div>
+    <div class="availability-box">
+      <h3><div class="avail-dot"></div><span data-es="Disponible ahora" data-en="Available now">Disponible ahora</span></h3>
+      <p data-es="Busco trabajo para julio y agosto 2026. Disponibilidad completa: turno rotativo, fines de semana, mañana/tarde/noche. Sin carnet de conducir, movilidad local en el Vallès Occidental.<br><br>A partir de septiembre: disponibilidad parcial (fines de semana) compatible con el cuatrimestre universitario." data-en="Looking for work for July and August 2026. Full availability: rotating shifts, weekends, morning/afternoon/night. No driving licence, local mobility in Vallès Occidental.<br><br>From September: partial availability (weekends) compatible with the university term.">
+        Busco trabajo para julio y agosto 2026. Disponibilidad completa: turno rotativo, fines de semana, mañana/tarde/noche. Sin carnet de conducir, movilidad local en el Vallès Occidental.<br><br>A partir de septiembre: disponibilidad parcial (fines de semana) compatible con el cuatrimestre universitario.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>José Gámir García · <span data-es="Terrassa, 2026" data-en="Terrassa, 2026">Terrassa, 2026</span></div>
+  <div data-es="Ingeniería en Tecnologías Industriales — UPC ESEIAAT" data-en="Industrial Engineering — UPC ESEIAAT">Ingeniería en Tecnologías Industriales — UPC ESEIAAT</div>
+</footer>
+
+<script>
+// ── PHOTO UPLOAD ──
+document.getElementById('photo-input').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    const img = document.getElementById('photo-preview');
+    img.src = ev.target.result;
+    img.style.display = 'block';
+    document.getElementById('photo-placeholder').style.display = 'none';
+    document.getElementById('photo-hint').setAttribute('data-es', 'Haz clic para cambiar');
+    document.getElementById('photo-hint').setAttribute('data-en', 'Click to change');
+    document.getElementById('photo-hint').textContent = 'Haz clic para cambiar';
+  };
+  reader.readAsDataURL(file);
+});
+
+function removePhoto() {}  // no-op, se cambia haciendo clic
+
+// ── LANG TOGGLE ──
+let currentLang = 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  document.querySelectorAll('[data-es][data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val !== null) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = val;
+      } else {
+        el.innerHTML = val;
+      }
+    }
+  });
+
+  // Nav links text
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const val = a.getAttribute('data-' + lang);
+    if (val) a.textContent = val;
+  });
+
+  document.documentElement.lang = lang;
+}
+
+// Init nav links text
+setLang('es');
+
+// ── TABS ──
+function switchTab(name) {
+  document.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── INTERSECTION OBSERVER ──
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Animate skill bars
+      e.target.querySelectorAll('.skill-fill').forEach(bar => {
+        bar.style.width = bar.getAttribute('data-width') + '%';
+      });
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in, .tl-item').forEach(el => io.observe(el));
+
+// Also trigger skill bars when skills section enters view
+const skillsSection = document.getElementById('habilidades');
+if (skillsSection) io.observe(skillsSection);
+</script>
+</body>
+</html>
